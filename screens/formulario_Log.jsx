@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image , ImageBackground} from 'react-native';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -33,55 +33,66 @@ const Login = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.content}>
-        {loggedIn ? (
-          <Text style={styles.welcomeText}>¡Bienvenido, {username}!</Text>
-        ) : (
-          <>
-            <View style={styles.headerContainer}>
-              <Image
-                source={require('./../img/Login.Meson.Rosa.png')}
-                style={styles.logoImage}
+    <ImageBackground
+      source={require('./../img/a14b3f70ba34973dfee19d4e9ed233e2.jpg')}
+      style={styles.backgroundImage}
+    >
+      <View style={styles.container}>
+        <View style={styles.content}>
+          {loggedIn ? (
+            <Text style={styles.welcomeText}>¡Bienvenido, {username}!</Text>
+          ) : (
+            <>
+              <View style={styles.headerContainer}>
+                <Image
+                  source={require('./../img/Login.Meson.Rosa.png')}
+                  style={styles.logoImage}
+                />
+              </View>
+
+              <TextInput
+                placeholder="Nombre de usuario"
+                style={styles.input}
+                value={username}
+                onChangeText={(text) => setUsername(text)}
+                editable={!loggedIn}
               />
-            </View>
+              <TextInput
+                placeholder="Contraseña"
+                secureTextEntry
+                style={styles.input}
+                value={password}
+                onChangeText={(text) => setPassword(text)}
+                editable={!loggedIn}
+              />
+              <TouchableOpacity style={styles.button} onPress={handleLogin} disabled={loggedIn}>
+                <Text style={styles.buttonText}>Iniciar Sesión</Text>
+              </TouchableOpacity>
+              <Text style={styles.registerText}>¿No tienes una cuenta? Regístrate</Text>
+            </>
+          )}
+        </View>
 
-            <TextInput
-              placeholder="Nombre de usuario"
-              style={styles.input}
-              value={username}
-              onChangeText={(text) => setUsername(text)}
-              editable={!loggedIn}
-            />
-            <TextInput
-              placeholder="Contraseña"
-              secureTextEntry
-              style={styles.input}
-              value={password}
-              onChangeText={(text) => setPassword(text)}
-              editable={!loggedIn}
-            />
-            <TouchableOpacity style={styles.button} onPress={handleLogin} disabled={loggedIn}>
-              <Text style={styles.buttonText}>Iniciar Sesión</Text>
-            </TouchableOpacity>
-            <Text style={styles.registerText}>¿No tienes una cuenta? Regístrate</Text>
-          </>
-        )}
+        <Text style={styles.footerText}>"NO HAY AMOR MAS SINCERO</Text>
+        <Text style={styles.footerText}>QUE EL AMOR A LA COMIDA"</Text>
       </View>
-
-      <Text style={styles.footerText}>"NO HAY AMOR MAS SINCERO</Text>
-      <Text style={styles.footerText}>QUE EL AMOR A LA COMIDA"</Text>
-    </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
 
+  backgroundImage: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    resizeMode: 'cover', // Ajustar la imagen para cubrir toda la pantalla
+  },
       container: {
         flex: 1,
         justifyContent: 'center', 
         alignItems: 'center',
-        backgroundColor: '#FFD3E0',
         padding: 20, 
       },
       content: {
